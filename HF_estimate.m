@@ -122,27 +122,18 @@
 
     % Egyenletrendszer megoldasai
     p = LS_d_5;
-    equations = @(x) [x(1)*sin(x(2)) - p(1); x(1)*cos(x(2)) - p(2)];
-    initial_guess = [1; 1];
-    solution = fsolve(equations, initial_guess);
-    D_5  = solution(1);
-    fi_5 = solution(2);
+    D_5  = sqrt(p(1)^2 + p(2)^2);
+    fi_5 = atan(p(2)./p(1));
     dC_5 = p(3);
 
     p = LS_d_10;
-    equations = @(x) [x(1)*sin(x(2)) - p(1); x(1)*cos(x(2)) - p(2)];
-    initial_guess = [1; 1];
-    solution = fsolve(equations, initial_guess);
-    D_10  = solution(1);
-    fi_10 = solution(2);
+    D_10  = sqrt(p(1)^2 + p(2)^2);
+    fi_10 = atan(p(2)./p(1));
     dC_10 = p(3);
 
     p = LS_d_100;
-    equations = @(x) [x(1)*sin(x(2)) - p(1); x(1)*cos(x(2)) - p(2)];
-    initial_guess = [1; 1];
-    solution = fsolve(equations, initial_guess);
-    D_100  = solution(1);
-    fi_100 = solution(2);
+    D_100  = sqrt(p(1)^2 + p(2)^2);
+    fi_100 = atan(p(2)./p(1));
     dC_100 = p(3);
 
     figure(5);
