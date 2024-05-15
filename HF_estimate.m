@@ -136,7 +136,7 @@
     fi_100 = atan(p(2)./p(1));
     dC_100 = p(3);
 
-    figure(5);
+    figure(10);
         show = [D_5, D_10, D_100; fi_5, fi_10, fi_100; dC_5, dC_10, dC_100];
         bar(show);
         title('D, fi és C LS becslői');
