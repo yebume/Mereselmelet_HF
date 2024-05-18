@@ -41,7 +41,7 @@
     C = X(3);
 
     % Zajos jel generalasa
-    sn = @(t) A*sin(2*pi*f_0*t) + B*cos(2*pi*f_0*t) + C + o_w*rand;
+    sn = @(t) A*sin(2*pi*f_0*t) + B*cos(2*pi*f_0*t) + C + o_w*randn;
     u_5   = zeros(N_5,1);
     u_10  = zeros(N_10,1);
     u_100 = zeros(N_100,1);
@@ -136,15 +136,6 @@
     fi_100 = atan(p(2)./p(1));
     dC_100 = p(3);
 
-    figure(10);
-        show = [D_5, D_10, D_100; fi_5, fi_10, fi_100; dC_5, dC_10, dC_100];
-        bar(show);
-        title('D, fi és C LS becslői');
-        xticklabels({'D', 'fi', 'C'});
-        legend('5 minta', '10 minta', '100 minta');
-        ylabel('Amplitudó [V] & Fázis [rad]');
-        grid on;
-
     % Minosegjelzo
     J_d = @(u, a_k, n, t) u'*(u- (U_d(n,t)*a_k));
     J_d_5    = J_d(u_5,   [D_5;  fi_5;   dC_5],   N_5,   t_5);
@@ -206,6 +197,7 @@
         CRLB_C_100 =  CRLB(s_udC_100);
         
     %% Kiértékelés
+    %{
     k = 1;
     figure(2);
         og = [A, B, C];
@@ -218,7 +210,7 @@
         legend('Eredeti','mu','MS becslő','ML becslő','LS becslő');
         ylabel('Amplitudó [V]');
         grid on;
-
+    %}
     k = 3;
     figure(3);
         if (k == 1)
@@ -238,7 +230,7 @@
         title(diag_title(k,:));
         legend('Eredeti', 'mu', '5 minta', '10 minta', '100 minta');
 
-
+    %{
     k = 1;
     figure(4);
         og = [A, B, C];
@@ -251,7 +243,7 @@
         legend('MS becslő','ML becslő','LS becslő');
         ylabel('Amplitudó [V]');
         grid on;
-
+    %}
     signal = @(t,p) p(1)*sin(2*pi*f_0*t) + p(2)*cos(2*pi*f_0*t) + p(3);
 
     s_MS_5   = signal(t_5,  MS_5);
@@ -302,7 +294,7 @@
         ylabel('Amplitudó [V]');
         xlabel('Idő [s]');
         grid on;
-
+    %{
     figure(9);
         plot(t_100, u_100 ,t_100, s_MS_100, t_100, s_ML_100, t_100, s_LS_100, LineWidth=1);
         title('Becslők');
@@ -310,3 +302,14 @@
         ylabel('Amplitudó [V]');
         xlabel('Idő [s]');
         grid on;
+    %}
+    figure(10);
+        show = [D_5, D_10, D_100; fi_5, fi_10, fi_100; dC_5, dC_10, dC_100];
+        bar(show);
+        title('D, fi és C LS becslői');
+        xticklabels({'D', 'fi', 'C'});
+        legend('5 minta', '10 minta', '100 minta');
+        ylabel('Amplitudó [V] & Fázis [rad]');
+        grid on;
+
+    close all;
